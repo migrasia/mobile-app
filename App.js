@@ -1,8 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Text, ScrollView, View } from 'react-native';
-import { createDrawerNavigator } from 'react-navigation';
-import Profile from './screens/Profile';
-import Courses from './screens/Courses';
+import AppDrawerNavigator from './Navigation/AppDrawerNavigator';
 
 export default class App extends React.Component {
   render() {
@@ -11,32 +8,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const CustomDrawerComponent = props => (
-  <SafeAreaView style={{ flex: 1 }}>
-    <View style = {{height: 150, backgroundColor: 'white'}}>
-      <Image source={require('./assets/logo.png')} style={{height: 120, width: 120, borderRadius: 60}} />
-    </View>
-    <ScrollView>
-      <DrawerItems {...props} />
-    </ScrollView>
-  </SafeAreaView>
-)
-
-const AppDrawerNavigator = createDrawerNavigator({
-  Profile: (props) => <Profile {...props.navigation.state.params} name='FirstName' location='Sheung Wan' birthDate='1920' />,
-  Courses: Courses
-},
-{
-  contentComponent: CustomDrawerComponent
-})
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

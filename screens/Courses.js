@@ -1,6 +1,6 @@
 import React from 'react';
 import { Content, Tabs, Tab} from 'native-base';
-import CoursesList from './CoursesList';
+import CoursesList from '../components/CoursesList';
 
 
 

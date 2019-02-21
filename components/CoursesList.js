@@ -19,7 +19,6 @@ const CoursesList = ({courseName, location, imgUri, progress}) => (
             <CardItem cardBody>
               <Image source={{url:imgUri}} style={{height: 200, width: null, flex: 1}}/>
             </CardItem>
-
             <CardItem>
             <Text> Progress  </Text>
             <ProgressBarAnimated
@@ -27,18 +26,8 @@ const CoursesList = ({courseName, location, imgUri, progress}) => (
               width={250}
             />
             </CardItem>
-
-
           </Card>
-
-
         </Content>
       </Container>
-
-
 );
  export default CoursesList;
-
-
-      
- 
