@@ -1,11 +1,12 @@
 import React from 'react'
 import { Container, Content, Card, Header, CardItem, Body, Thumbnail, Text } from 'native-base';
 import PropTypes from 'prop-types';
-
+import CustomHeader from '../components/CustomHeader';
 
 const Profile = ({name,location, birthDate}) =>(
 	<Container>
         <Content>
+					<CustomHeader/>
           <Card>
             <CardItem >
               <Body style={{alignItems:'center'}}>
@@ -19,7 +20,7 @@ const Profile = ({name,location, birthDate}) =>(
             <CardItem>
             	<Text>Date of Birth: {birthDate}</Text>
             </CardItem>
-            
+
           </Card>
         </Content>
       </Container>

@@ -5,10 +5,10 @@ import Courses from '../screens/Courses';
 import React from 'react';
 import { Image } from 'react-native';
 
-const CustomDrawerComponent = props => (
+const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
-    <View style = {{height: 150, backgroundColor: 'white'}}>
-      <Image source={require('../assets/logo.png')} style={{height: 120, width: 120, borderRadius: 60}} />
+    <View style = {{height: 150, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
+      <Image source={require('../assets/logo.png')} style={{height: 120, width: 120, borderRadius: 60,}} />
     </View>
     <ScrollView>
       <DrawerItems {...props} />
