@@ -3,17 +3,9 @@ import Courses from './screens/Courses';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import { SafeAreaView, ScrollView, View, Image } from 'react-native';
-import { createDrawerNavigator, DrawerItems, createStackNavigator } from 'react-navigation';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation';
+import { Content, Header, Icon, Left, Header } from 'native-base';
 
-
-
-export default class App extends React.Component{
-  render(){
-    return(
-      <AppDrawerNavigator/>
-    );
-  }
-}
 
 
 
@@ -31,22 +23,33 @@ const CustomDrawerComponent = (props) => (
 
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Profile: {
-    screen: (props) => <Profile {...props} name={'Firstname LastName'} location={'Hong Kong'} birthDate={'18th June, 1999'}/>
-  },
-  Courses: (props) => <Courses {...props} />
+  Profile: Profile,
+  Courses: Courses
 },
 {
-  contentComponent: CustomDrawerComponent
+  contentComponent: CustomDrawerComponent,
+  initialRouteName: Profile
 }
 )
-
-const AppStackNavigator = createStackNavigator({
-  Login: {
-    screen: Login
-  },
-  Drawer: {
-    screen: AppDrawerNavigator
-  }
-})
-
+const Menu= () => {
+  let pressMenu
+  return(
+    <Content>
+      <Header>
+      <Left>
+          <Icon
+            name="menu"
+            onPress={() => {
+              pressMenu.dispatch(DrawerActions.toggleDrawer())
+                }}
+           />
+        </Left>
+      />
+      </Header>
+      <Menu
+         ref={navigatorRef => { pressMenu = navigatorRef}}
+      />
+  </Content>
+  )
+}
+export default Menu;
