@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Content, Card, CardItem, Body, Thumbnail, Text, Header, Left, Right, Icon, Title, Button } from 'native-base';
-import PropTypes from 'prop-types';
+
 
 class Profile extends React.Component{
   render(){
@@ -28,6 +28,9 @@ class Profile extends React.Component{
             </CardItem>
             <CardItem>
             	<Text>Date of Birth: {this.props.birthDate}</Text>
+            </CardItem>
+            <CardItem>
+            	<Text>Date of Enrollment: {this.props.enrollmentDate}</Text>
             </CardItem>
           </Card>
         </Content>

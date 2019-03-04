@@ -29,7 +29,7 @@ const CustomDrawerComponent = (props) => (
 
 const AppDrawerNavigator = createDrawerNavigator({
   Profile: {
-    screen: (props) => <Profile {...props} name={'Firstname LastName'} location={'Hong Kong'} birthDate={'18th June, 1999'}/>
+    screen: (props) => <Profile {...props} name={'Firstname LastName'} location={'Hong Kong'} birthDate={'18th June, 1999'} enrollmentDate={'29th August, 2018'}/>
   },
   Courses: {
     screen: (props) => <Courses {...props} />
