@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body} from 'native-base';
 import CoursesList from '../components/CoursesList';
-import { DrawerNavigator } from 'react-navigation';
-
-
 
 class Courses extends Component{
   

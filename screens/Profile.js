@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Content, Card, CardItem, Body, Thumbnail, Text, Header, Left, Right, Icon, Title } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Thumbnail, Text, Header, Left, Right, Icon, Title, Button } from 'native-base';
 import PropTypes from 'prop-types';
 
 class Profile extends React.Component{

@@ -1,21 +1,19 @@
 import React from 'react';
+import { SafeAreaView, ScrollView, View, Image } from 'react-native';
+import { createDrawerNavigator, DrawerItems, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 import Courses from './screens/Courses';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
-import { SafeAreaView, ScrollView, View, Image } from 'react-native';
-import { createDrawerNavigator, DrawerItems, createStackNavigator } from 'react-navigation';
-
+import Logout from './screens/Logout';
 
 
 export default class App extends React.Component{
   render(){
     return(
-      <AppDrawerNavigator/>
+      <AppStackNavigator/>
     );
   }
 }
-
-
 
 
 const CustomDrawerComponent = (props) => (
@@ -29,24 +27,36 @@ const CustomDrawerComponent = (props) => (
   </SafeAreaView>
 )
 
-
 const AppDrawerNavigator = createDrawerNavigator({
   Profile: {
     screen: (props) => <Profile {...props} name={'Firstname LastName'} location={'Hong Kong'} birthDate={'18th June, 1999'}/>
   },
-  Courses: (props) => <Courses {...props} />
+  Courses: {
+    screen: (props) => <Courses {...props} />
+  },
+  Logout: {
+    screen: (props) => <Logout {...props} />
+  }  
 },
 {
   contentComponent: CustomDrawerComponent
 }
 )
 
-const AppStackNavigator = createStackNavigator({
+const LoginNavigator = createStackNavigator({
   Login: {
     screen: Login
+  }
+})
+
+const AppStackNavigator = createSwitchNavigator({
+  LoginNav: {
+    screen: LoginNavigator
   },
   Drawer: {
     screen: AppDrawerNavigator
   }
+},{
+  initialRouteName: "LoginNav"
 })
 
