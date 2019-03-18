@@ -28,6 +28,6 @@ const CoursesList = ({courseName, location, imgUri, progress}) => (
             </CardItem>
           </Card>
         </Content>
-      </Container>
+  </Container>
 );
  export default CoursesList;

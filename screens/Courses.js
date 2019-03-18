@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body} from 'native-base';
 import CoursesList from '../components/CoursesList';
+import CoursesCat from '../components/CoursesCat';
 
 class Courses extends Component{
   
@@ -22,6 +23,7 @@ class Courses extends Component{
             <CoursesList courseName={'Rights for Migrant Workers'} imgUri={'https://www.acluaz.org/sites/default/files/styles/metatag_og_image_1200x630/public/field_image/kyr.png?itok=u6_CSd7j'} location={'HKU'} progress={50} />
           </Tab>
           <Tab heading={`All Courses`}>
+            <CoursesCat />
           </Tab>
         </Tabs>
       </Content>
