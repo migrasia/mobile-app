@@ -4,7 +4,7 @@ import { Container, Content, Card, CardItem, Thumbnail, Text, Left, Body } from 
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
 const CoursesList = ({courseName, location, imgUri, progress}) => (
-  <Container>
+
         <Content>
           <Card>
             <CardItem>
@@ -28,6 +28,6 @@ const CoursesList = ({courseName, location, imgUri, progress}) => (
             </CardItem>
           </Card>
         </Content>
-  </Container>
+
 );
  export default CoursesList;

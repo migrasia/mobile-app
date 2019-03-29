@@ -1,20 +1,40 @@
 import React from 'react';
+import { Constants } from 'expo';
+
+import { ApolloProvider } from 'react-apollo';
+import ApolloClient from 'apollo-boost';
+
 import { SafeAreaView, ScrollView, View, Image } from 'react-native';
 import { createDrawerNavigator, DrawerItems, createSwitchNavigator, createStackNavigator } from 'react-navigation';
+
 import Courses from './screens/Courses';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
 
+const { manifest } = Constants;
+
+const graphQLURI = (typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
+? `http://${manifest.debuggerHost.split(":").shift()}:4000/graphql`
+: `https://test-migrasia.herokuapp.com/`;
+
+const client = new ApolloClient({
+  uri: graphQLURI,
+  onError: ({ networkError, graphQLErrors }) =>{
+    if(networkError) console.log(networkError);
+    if(graphQLErrors) console.log(graphQLErrors);
+  },
+});
 
 export default class App extends React.Component{
   render(){
     return(
-      <AppStackNavigator/>
+      <ApolloProvider client={client}>
+        <AppStackNavigator/>
+      </ApolloProvider>
     );
   }
 }
-
 
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
