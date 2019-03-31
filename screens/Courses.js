@@ -26,7 +26,6 @@ class Courses extends Component{
     const{ loading, error, course } = this.props.coursesQuery;
     if (loading) return <Loading />;
     if (error) return <Error content={error.message} />;
-    console.log((course[0]));
     return(
       <Container>
       <Content>
