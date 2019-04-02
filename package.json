@@ -7,6 +7,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/videoplayer": "^0.4.0",
     "apollo-boost": "^0.3.1",
     "expo": "^32.0.0",
     "graphql": "^14.1.1",
@@ -16,6 +17,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-progress-bar-animated": "^1.0.6",
     "react-native-video": "^4.4.0",
+    "react-native-youtube": "^1.1.0",
     "react-navigation": "^2.18.3"
   },
   "devDependencies": {

@@ -11,6 +11,8 @@ import Courses from './screens/Courses';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
+import Videos from './screens/Videos';
+
 
 const { manifest } = Constants;
 
@@ -56,7 +58,10 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
   Logout: {
     screen: (props) => <Logout {...props} />
-  }  
+  },
+  Videos: {
+    screen: (props) => <Videos {...props} />
+  }, 
 },
 {
   contentComponent: CustomDrawerComponent

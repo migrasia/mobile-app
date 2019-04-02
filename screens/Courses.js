@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body, Text} from 'native-base';
+import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body } from 'native-base';
 
 import CoursesList from '../components/CoursesList';
 import CoursesCat from '../components/CoursesCat';
