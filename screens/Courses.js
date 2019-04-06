@@ -17,6 +17,8 @@ const COURSES_QUERY = gql`
     course {
       coursename
       structure
+      icon
+      category
     }
   }  
 `;
@@ -44,7 +46,7 @@ class Courses extends Component{
             course.map((courses, index) => {
               return (
                 <View key={index}>
-                  <CoursesList courseName={courses.coursename} imgUri={'https://www.acluaz.org/sites/default/files/styles/metatag_og_image_1200x630/public/field_image/kyr.png?itok=u6_CSd7j'} location={'HKU'} progress={50}/>
+                  <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={50}/>
                 </View>
               )
             })
