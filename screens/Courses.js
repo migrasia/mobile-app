@@ -8,8 +8,8 @@ import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body }
 
 import CoursesList from '../components/CoursesList';
 import CoursesCat from '../components/CoursesCat';
-import Error from './Error';
-import Loading from './Loading';
+import Error from '../components/Error';
+import Loading from '../components/Loading';
 
 
 const COURSES_QUERY = gql`
