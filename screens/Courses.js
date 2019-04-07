@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body } from 'native-base';
 
+
 import CoursesList from '../components/CoursesList';
 import CoursesCat from '../components/CoursesCat';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import Videos from '../components/Videos'
 
 
 const COURSES_QUERY = gql`
@@ -24,43 +24,45 @@ const COURSES_QUERY = gql`
   }  
 `;
 
-class Courses extends Component{
-  render(){
-    const{ loading, error, course } = this.props.coursesQuery;
+class Courses extends Component {
+  render() {
+    const { loading, error, course } = this.props.coursesQuery;
     if (loading) return <Loading />;
     if (error) return <Error content={error.message} />;
-    return(
+    return (
       <Container>
-      <Content>
-        <Header>
-          <Left>
-            <Icon name='menu' onPress={()=>this.props.navigation.openDrawer()}/>
-          </Left>
-          <Body>
-            <Title>Courses</Title>
-          </Body>
-          <Right/>
-        </Header>
-        <Tabs>
-          <Tab heading={`Enrolled`}>
-          {
-            course.map((courses, index) => {
-              return (
-                <View key={index}>
-                  <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={50} onPress={() => navigate('Videos', {name: courses.coursename}) }/>
-                </View>
-              )
-            })
-          }
-          </Tab>
-          <Tab heading={`All Courses`}>
-            <CoursesCat />
-          </Tab>
-        </Tabs>
-      </Content>
+        <Content>
+          <Header>
+            <Left>
+              <Icon name='menu' onPress={() => this.props.navigation.openDrawer()} />
+            </Left>
+            <Body>
+              <Title>Courses</Title>
+            </Body>
+            <Right />
+          </Header>
+          <Tabs>
+            <Tab heading={`Enrolled`}>
+              {
+                course.map((courses, index) => {
+                  return (
+                    <View key={index}>
+                      <TouchableOpacity>
+                        <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={Math.floor(Math.random()*101)} onPress={() => this.props.navigation.navigate(Profile)} />
+                      </TouchableOpacity>
+                    </View>
+                  )
+                })
+              }
+            </Tab>
+            <Tab heading={`All Courses`}>
+              <CoursesCat />
+            </Tab>
+          </Tabs>
+        </Content>
       </Container>
     );
   }
 }
 
-export default graphql(COURSES_QUERY, {name:'coursesQuery'})(Courses);
+export default graphql(COURSES_QUERY, { name: 'coursesQuery' })(Courses);

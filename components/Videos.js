@@ -5,13 +5,10 @@ class Videos extends Component {
     render() {
         return (
             <View>
-                <Text>
-                    { this.props.name }
-                </Text> 
                 <WebView
                     mediaPlaybackRequiresUserAction={true}
                     style={{ height: 240, width: 320, alignSelf: "center", alignContent: "center" }}
-                    source={{ uri: 'https://www.youtube.com/embed/li8yILhFFZM?rel=0' }}
+                    source={{ uri: this.props.url }}
                 />
             </View>
         );

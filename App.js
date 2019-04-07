@@ -11,6 +11,7 @@ import Courses from './screens/Courses';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
+import CoursePage from './components/CoursePage';
 
 
 
@@ -59,6 +60,9 @@ const AppDrawerNavigator = createDrawerNavigator({
   Logout: {
     screen: (props) => <Logout {...props} />
   },
+  CoursePage:{
+    screen: (props) => <CoursePage {...props} coursename= {"Mathematics"} coursevideos={["https://www.youtube.com/embed/mQ055hHdxbE","https://www.youtube.com/embed/oBIxScJ5rlY","https://www.youtube.com/embed/Np7A1bT3lrg"]}/>
+  }
 },
 {
   contentComponent: CustomDrawerComponent
