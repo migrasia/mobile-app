@@ -10,6 +10,7 @@ import CoursesList from '../components/CoursesList';
 import CoursesCat from '../components/CoursesCat';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
+import Videos from '../components/Videos'
 
 
 const COURSES_QUERY = gql`
@@ -46,7 +47,7 @@ class Courses extends Component{
             course.map((courses, index) => {
               return (
                 <View key={index}>
-                  <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={50}/>
+                  <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={50} onPress={() => navigate('Videos', {name: courses.coursename}) }/>
                 </View>
               )
             })
