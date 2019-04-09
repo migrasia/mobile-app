@@ -7,7 +7,6 @@ class CoursePage extends Component {
     render() {
         const coursename = this.props.navigation.getParam('coursename');
         const coursevideos = this.props.navigation.getParam('coursevideos');
-        console.log(coursevideos);
         return (
             <Container>
                 <Content>
