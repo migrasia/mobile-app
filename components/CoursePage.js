@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { Content, Container, Header, Left, Title, Right, Body, Card, CardItem,Text, View } from 'native-base';
+import { Content, Container, Header, Left, Title, Right, Body, Card, CardItem,Text, View, Icon } from 'native-base';
 
 import Videos from './Videos';
 
 class CoursePage extends Component {
     render() {
-        console.log(this.props);
-        return (
+    console.log(this.props.coursename);
+     return (
             <Container>
                 <Content>
                     <Header>
                         <Left>
+                            <Icon name='ios-arrow-back' onPress={() => this.props.navigation.goBack()} />
                         </Left>
                         <Body>
-                            <Title>{this.props.coursename}</Title>
+                            <Title></Title>
                         </Body>
                         <Right />
                     </Header>
@@ -44,7 +44,7 @@ class CoursePage extends Component {
 }
 
 CoursePage.defaultProps = {
-    coursevideos: ["", "", ""],
+    coursevideos: ["https://www.youtube.com/embed/Rq0uTxTQD5w", "https://www.youtube.com/embed/5GTbM5-ku-M", "https://www.youtube.com/embed/bP0zUTl3pGg"],
     coursename: "DummyCourse"
 };
 

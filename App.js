@@ -44,11 +44,17 @@ const CustomDrawerComponent = (props) => (
 )
 
 const CourseNav = createStackNavigator({
-  CoursePage: { screen: CoursePage },
-  Courses: { screen: Courses }
+  Courses: { 
+    screen: (props)=> <Courses {...props}/> 
+  },
+  CoursePage: { 
+    screen: (props) => <CoursePage {...props} /> 
+  }
 },
   {
-    navigationOptions: { header: null }
+    navigationOptions: { 
+      header: null 
+  }
 });
 
 const AppDrawerNavigator = createDrawerNavigator({
