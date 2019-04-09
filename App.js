@@ -1,5 +1,4 @@
 import React from 'react';
-import { Constants } from 'expo';
 
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
@@ -8,32 +7,26 @@ import { SafeAreaView, ScrollView, View, Image } from 'react-native';
 import { createDrawerNavigator, DrawerItems, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
 import Courses from './screens/Courses';
+import CoursePage from './components/CoursePage';
 import Profile from './screens/Profile';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
-import CoursePage from './components/CoursePage';
 
-
-
-const { manifest } = Constants;
-
-const graphQLURI = (typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
-? `http://${manifest.debuggerHost.split(":").shift()}:4000/graphql`
-: `https://test-migrasia.herokuapp.com/`;
+const graphQLURI = `https://test-migrasia.herokuapp.com/`;
 
 const client = new ApolloClient({
   uri: graphQLURI,
-  onError: ({ networkError, graphQLErrors }) =>{
-    if(networkError) console.log(networkError);
-    if(graphQLErrors) console.log(graphQLErrors);
+  onError: ({ networkError, graphQLErrors }) => {
+    if (networkError) console.log(networkError);
+    if (graphQLErrors) console.log(graphQLErrors);
   },
 });
 
-export default class App extends React.Component{
-  render(){
-    return(
+export default class App extends React.Component {
+  render() {
+    return (
       <ApolloProvider client={client}>
-        <AppStackNavigator/>
+        <AppStackNavigator />
       </ApolloProvider>
     );
   }
@@ -41,8 +34,8 @@ export default class App extends React.Component{
 
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{ flex: 1 }}>
-    <View style = {{height: 150, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center'}}>
-      <Image source={require('./assets/logo.png')} style={{height: 120, width: 120, borderRadius: 60,}} />
+    <View style={{ height: 150, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
+      <Image source={require('./assets/logo.png')} style={{ height: 120, width: 120, borderRadius: 60, }} />
     </View>
     <ScrollView>
       <DrawerItems {...props} />
@@ -50,23 +43,28 @@ const CustomDrawerComponent = (props) => (
   </SafeAreaView>
 )
 
+const CourseNav = createStackNavigator({
+  CoursePage: { screen: CoursePage },
+  Courses: { screen: Courses }
+},
+  {
+    navigationOptions: { header: null }
+});
+
 const AppDrawerNavigator = createDrawerNavigator({
   Profile: {
-    screen: (props) => <Profile {...props} name={'Firstname LastName'} location={'Hong Kong'} birthDate={'18th June, 1999'} enrollmentDate={'29th August, 2018'}/>
+    screen: (props) => <Profile {...props} name={'Firstname LastName'} location={'Hong Kong'} birthDate={'18th June, 1999'} enrollmentDate={'29th August, 2018'} />
   },
   Courses: {
-    screen: (props) => <Courses {...props} />
+    screen: CourseNav
   },
   Logout: {
     screen: (props) => <Logout {...props} />
-  },
-  CoursePage:{
-    screen: (props) => <CoursePage {...props} coursename= {"Mathematics"} coursevideos={["https://www.youtube.com/embed/mQ055hHdxbE","https://www.youtube.com/embed/oBIxScJ5rlY","https://www.youtube.com/embed/Np7A1bT3lrg"]}/>
   }
 },
-{
-  contentComponent: CustomDrawerComponent
-}
+  {
+    contentComponent: CustomDrawerComponent
+  }
 )
 
 const LoginNavigator = createStackNavigator({
@@ -82,7 +80,6 @@ const AppStackNavigator = createSwitchNavigator({
   Drawer: {
     screen: AppDrawerNavigator
   }
-},{
-  initialRouteName: "LoginNav"
-})
-
+}, {
+    initialRouteName: "LoginNav"
+  })

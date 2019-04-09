@@ -44,7 +44,7 @@ class CoursePage extends Component {
 }
 
 CoursePage.defaultProps = {
-    videos: ["", "", ""],
+    coursevideos: ["", "", ""],
     coursename: "DummyCourse"
 };
 

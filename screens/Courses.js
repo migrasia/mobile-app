@@ -6,11 +6,12 @@ import gql from 'graphql-tag';
 
 import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body } from 'native-base';
 
-
 import CoursesList from '../components/CoursesList';
 import CoursesCat from '../components/CoursesCat';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
+import CoursePage from '../components/CoursePage';
+import { NavigationActions } from 'react-navigation';
 
 
 const COURSES_QUERY = gql`
@@ -29,6 +30,7 @@ class Courses extends Component {
     const { loading, error, course } = this.props.coursesQuery;
     if (loading) return <Loading />;
     if (error) return <Error content={error.message} />;
+    console.log(this.props);
     return (
       <Container>
         <Content>
@@ -48,7 +50,7 @@ class Courses extends Component {
                   return (
                     <View key={index}>
                       <TouchableOpacity>
-                        <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={Math.floor(Math.random()*101)} onPress={() => this.props.navigation.navigate(Profile)} />
+                        <CoursesList courseName={courses.coursename} imgUri={courses.icon} location={'HKU'} progress={50} onPress={() => this.props.navigation.navigate('Profile')} />
                       </TouchableOpacity>
                     </View>
                   )

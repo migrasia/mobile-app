@@ -2,7 +2,9 @@ import React from 'react';
 import { Text, View, Button } from 'react-native';
 
 class Login extends React.Component{
-    render(){
+    render()
+    {
+      console.log(this.props);
       return(
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button title="Login"
