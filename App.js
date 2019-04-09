@@ -3,6 +3,8 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
 
+import { Constants } from "expo";
+
 import { SafeAreaView, ScrollView, View, Image } from 'react-native';
 import { createDrawerNavigator, DrawerItems, createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
@@ -12,7 +14,13 @@ import Profile from './screens/Profile';
 import Login from './screens/Login';
 import Logout from './screens/Logout';
 
-const graphQLURI = `https://test-migrasia.herokuapp.com/`;
+const { manifest } = Constants;
+
+
+const graphQLURI = (typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
+  ? `http://${manifest.debuggerHost.split(":").shift()}:4000/graphql`
+  : `https://test-migrasia.herokuapp.com/`;
+
 
 const client = new ApolloClient({
   uri: graphQLURI,

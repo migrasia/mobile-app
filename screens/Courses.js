@@ -47,7 +47,7 @@ class Courses extends Component {
                     <View key={index}>
                       <TouchableOpacity onPress={() => 
                         {
-                          this.props.navigation.navigate('CoursePage', { coursename: courses.coursename });
+                          this.props.navigation.navigate('CoursePage', { coursename: courses.coursename, coursevideos:courses.structure });
                         }
                         }>
                         <CoursesList courseName={courses.coursename} imgUri={courses.icon} progress={Math.floor(Math.random() * 101)} />
