@@ -1,5 +1,4 @@
 import React from 'react';
-import { Image } from 'react-native';
 import { CardItem, Thumbnail, Text, Left, Body, View, Card } from 'native-base';
 
 const CardItems = ({ coursecategory, imgUri }) => (
@@ -14,7 +13,6 @@ const CardItems = ({ coursecategory, imgUri }) => (
                 </Left>
             </CardItem>
             <CardItem cardBody>
-                <Image source={{ url: imgUri }} style={{ height: 10, width: null, flex: 1 }} />
             </CardItem>
         </Card>
     </View>

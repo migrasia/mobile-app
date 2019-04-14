@@ -4,12 +4,12 @@ import { View, TouchableOpacity } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body } from 'native-base';
+import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body, Text } from 'native-base';
 
 import CoursesList from '../components/CoursesList';
-import CoursesCat from '../components/CoursesCat';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
+import CardItems from '../components/CardItems';
 
 const COURSES_QUERY = gql`
   query {
@@ -27,6 +27,10 @@ class Courses extends Component {
     const { loading, error, course } = this.props.coursesQuery;
     if (loading) return <Loading />;
     else if (error) return <Error content={error.message} />;
+    const uniqueCategories = {};
+    course.forEach(courses => uniqueCategories[courses.category] = 1);
+    const categories = Object.keys(uniqueCategories);
+    
     return (
       <Container>
         <Content>
@@ -58,7 +62,28 @@ class Courses extends Component {
               }
             </Tab>
             <Tab heading={`All Courses`}>
-              <CoursesCat />
+            {
+              categories.map((category, index) => {
+                const categoryCourses = course.filter(courses=>courses.category===category);
+                return(
+                  <View>
+                    <View style={{ alignItems: 'center' }}>
+                      <Text style={{ padding: 10, fontSize: 30 }}>{category}</Text>
+                    </View>
+                    
+                    {
+                      categoryCourses.map((catcourse, index)=>{
+                        return(
+                          <TouchableOpacity onPress={()=> {this.props.navigation.navigate('CoursePage', { coursename: catcourse.coursename, coursevideos:catcourse.structure });}}>
+                            <CoursesList courseName={catcourse.coursename} imgUri={catcourse.icon} progress={-1} />
+                          </TouchableOpacity>
+                        )
+                      })
+                    }
+                  </View>  
+                )
+              })
+            }
             </Tab>
           </Tabs>
         </Content>

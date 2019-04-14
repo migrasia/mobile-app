@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardItem, Thumbnail, Text, Left, Body } from 'native-base';
+import { Card, CardItem, Thumbnail, Text, Left, Body, View, Content } from 'native-base';
 import ProgressBarAnimated from 'react-native-progress-bar-animated';
 
 class CoursesList extends Component {
@@ -14,12 +14,20 @@ class CoursesList extends Component {
             </Body>
           </Left>
         </CardItem>
-        <CardItem>
-          <Text> Progress  </Text>
-          <ProgressBarAnimated
-            value={this.props.progress}
-            width={250}
-          />
+        <CardItem>   
+          {
+            (this.props.progress>=0 &&
+                <View>
+                  <Text>Progress:</Text>
+                  <Text></Text>
+                  <ProgressBarAnimated
+                  value={this.props.progress}
+                  width={250}
+                />
+                </View>
+                
+            )
+          }
         </CardItem>
       </Card>
     );
