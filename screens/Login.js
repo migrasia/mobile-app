@@ -15,7 +15,7 @@ class Login extends React.Component{
                 <Label>Password </Label>
                 <Input secureTextEntry = {true} autoCorrect={false} autoCapitalize="none" />
                 </Item>
-                <Button full rounded styles={ {marginTop: 20,} } onPress={()=>this.props.navigation.navigate('Drawer')}>
+                <Button full rounded style={ {marginTop: 20,} } onPress={()=>this.props.navigation.navigate('Drawer')}>
                 <Text style={{color:'white'}}> Login </Text>
                  </Button>
             </Form>

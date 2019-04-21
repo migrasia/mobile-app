@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { Content, Container, Header, Left, Title, Right, Body, Card, CardItem, Text, View, Icon } from 'native-base';
+import { Content, Container, Header, Left, Title, Right, Body, Card, CardItem, Text, View, Icon, ListItem, Radio } from 'native-base';
 
 import Videos from './Videos';
 
 class CoursePage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            itemSelected: 'itemOne',
+        }
+    }
     render() {
         const coursename = this.props.navigation.getParam('coursename');
         const coursevideos = this.props.navigation.getParam('coursevideos');
@@ -14,7 +20,7 @@ class CoursePage extends Component {
                         <Left>
                             <Icon name='ios-arrow-back' onPress={() => this.props.navigation.goBack()} />
                         </Left>
-                        <Body style={{flex:3}}>
+                        <Body style={{ flex: 3 }}>
                             <Title>{JSON.stringify(coursename).replace(/['"]+/g, '')}</Title>
                         </Body>
                         <Right />
@@ -38,6 +44,38 @@ class CoursePage extends Component {
                             )
                         })
                     }
+                    <View>
+                        <Card style={{ backgroundColor: '#fff', padding: 30 }}>
+                            <CardItem>
+                                <Body style={{ alignItems: 'center' }}>
+                                    <Text>Question 1</Text>
+                                </Body>
+                            </CardItem>
+                            <Text>When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr?</Text>
+                            <View>
+                                <Content>
+                                    <ListItem onPress={() => this.setState({ itemSelected: 'itemOne' })}
+                                        selected={this.state.itemSelected == 'itemOne'}>
+                                        <Left>
+                                            <Text>Daily Stand Up</Text>
+                                        </Left>
+                                        <Right>
+                                            <Radio selected={false} />
+                                        </Right>
+                                    </ListItem>
+                                    <ListItem onPress={() => this.setState({ itemSelected: 'itemOne' })}
+                                        selected={this.state.itemSelected == 'itemTwo'}>
+                                        <Left>
+                                            <Text>Discussion with Client</Text>
+                                        </Left>
+                                        <Right>
+                                            <Radio selected={false} />
+                                        </Right>
+                                    </ListItem>
+                                </Content>
+                            </View>
+                        </Card>
+                    </View>
                 </Content>
             </Container>
         );

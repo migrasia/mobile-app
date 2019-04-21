@@ -9,7 +9,6 @@ import { Content, Tabs, Tab, Container, Header, Left, Icon, Title, Right, Body, 
 import CoursesList from '../components/CoursesList';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import CardItems from '../components/CardItems';
 
 const COURSES_QUERY = gql`
   query {
