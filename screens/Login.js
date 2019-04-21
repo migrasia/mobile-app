@@ -25,7 +25,12 @@ class Login extends React.Component{
     }
       signUpUser =(email, password) => {
         try {
+          if (this.state.password.length < 6) {
+            alert("Password should atleast be 6 characters")
+            return;
+          }
           firebase.auth().createUserWithEmailAndPassword(email,password)
+          alert("Registration Successful! Try loging in now.")
         }
         catch(error) {
           console.log(error.toString());
@@ -33,11 +38,13 @@ class Login extends React.Component{
 
       }
       loginUser = (email, password) => {
-        try {
+        try{
           firebase.auth().signInWithEmailAndPassword(email, password)
+          alert("Login Successfull!");
+          this.props.navigation.navigate('Drawer');
         }
         catch(error) {
-          console.log(error.toString());
+           console.log(error.toString())
         }
         
       }
@@ -47,12 +54,13 @@ class Login extends React.Component{
       return(
           <Container style={styles.container}>
             <Form>
+
             <Item floatingLabel style={{marginBottom: 10}}>
                 <Label>Email </Label>
                 <Input 
                   autoCorrect={false} 
-                  autoCapitalize="none" />
-                  onChangeText = {(email)=> this.setState({email})}
+                  autoCapitalize="none" 
+                  onChangeText = {(email)=> this.setState({email})} />
                 </Item>
                
               
@@ -61,12 +69,11 @@ class Login extends React.Component{
                 <Input 
                   secureTextEntry = {true}
                   autoCorrect={false} 
-                  autoCapitalize="none" />
-                  onChangeText = {(password)=> this.setState({password})}
+                  autoCapitalize="none" 
+                  onChangeText = {(password)=> this.setState({password})} />
                 </Item>
                
-
-                <Button full rounded style={ {marginTop: 10} } onPress={()=>this.loginUser(this.state.email, this.state.password )}>
+                <Button full rounded style={ {marginTop: 10} } onPress={()=>this.loginUser(this.state.email, this.state.password)}>
                 <Text style={{color:'white'}}> Login </Text>
                  </Button>
 
