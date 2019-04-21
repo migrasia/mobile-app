@@ -25,12 +25,7 @@ class Login extends React.Component{
     }
       signUpUser =(email, password) => {
         try {
-          if(this.state.password.length <6) {
-            alert("Please enter at least 6 characters");
-            return;
-          }
           firebase.auth().createUserWithEmailAndPassword(email,password)
-          this.props.na
         }
         catch(error) {
           console.log(error.toString());
@@ -52,13 +47,14 @@ class Login extends React.Component{
       return(
           <Container style={styles.container}>
             <Form>
-              <Item floatingLabel>
+            <Item floatingLabel style={{marginBottom: 10}}>
                 <Label>Email </Label>
                 <Input 
-                autoCorrect={false} 
-                autoCapitalize="none"
-                onChangeText = {(email) => this.setState({email})} />
+                  autoCorrect={false} 
+                  autoCapitalize="none" />
+                  onChangeText = {(email)=> this.setState({email})}
                 </Item>
+               
               
               <Item floatingLabel style={{marginBottom: 10}}>
                 <Label>Password </Label>
@@ -69,6 +65,7 @@ class Login extends React.Component{
                   onChangeText = {(password)=> this.setState({password})}
                 </Item>
                
+
                 <Button full rounded style={ {marginTop: 10} } onPress={()=>this.loginUser(this.state.email, this.state.password )}>
                 <Text style={{color:'white'}}> Login </Text>
                  </Button>
