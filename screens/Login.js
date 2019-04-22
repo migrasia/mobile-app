@@ -59,7 +59,9 @@ class Login extends React.Component{
             console.log(error);
           }
           )
+          alert("Login Successfull!");
           this.props.navigation.navigate('Drawer');
+
       }
     }
 
@@ -70,6 +72,7 @@ class Login extends React.Component{
           }
         })
       }
+
     render()
     {
       return(
