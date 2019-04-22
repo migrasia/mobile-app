@@ -2,8 +2,17 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import { Container, Content, Body, Header, Left, Right, Icon, Title } from 'native-base';
 import { NavigationActions } from 'react-navigation';
+import * as firebase from 'firebase'
+
+
 
 class Logout extends React.Component{
+
+  logout = () => {
+    firebase.auth().signOut();
+    this.props.navigation.navigate('LoginNav', {}, NavigationActions.navigate({ routeName: 'Login' }));
+  }
+
     render(){
       return(
           <Content>
@@ -19,7 +28,7 @@ class Logout extends React.Component{
           </Header>
               <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Button title="Logout"
-                 onPress={()=>this.props.navigation.navigate('LoginNav', {}, NavigationActions.navigate({ routeName: 'Login' }))}
+                 onPress= {() => this.logout()}
                  />
                 </View>
               </Container>
