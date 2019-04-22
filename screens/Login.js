@@ -80,6 +80,12 @@ class Login extends React.Component{
                  <Button full rounded style={ {marginTop: 10,} } onPress={()=>this.signUpUser(this.state.email, this.state.password)}>
                 <Text style={{color:'white'}}> Register </Text>
                  </Button>
+
+                 <Button full rounded style={ {marginTop: 10,} } onPress={()=>this.loginWithFacebook()}>
+                <Text style={{color:'white'}}> Sign in with Facebook </Text>
+                 </Button>
+
+
             </Form>
             </Container>
       );
