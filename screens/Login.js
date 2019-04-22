@@ -20,47 +20,49 @@ class Login extends React.Component{
       super(props)
       this.state=({
         email: '',
-        password: ''
+        password: '',
       })
     }
       signUpUser =(email, password) => {
-        try {
+
           if (this.state.password.length < 6) {
             alert("Password should atleast be 6 characters")
             return;
           }
-          firebase.auth().createUserWithEmailAndPassword(email,password)
-          alert("Registration Successful! Try loging in now.")
-        }
-        catch(error) {
-          console.log(error.toString());
-        }
+          firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password)
+          .then(() => this.props.navigation.navigate('Drawer'))
+          .catch(error => alert(error.toString()))
 
       }
       loginUser = (email, password) => {
-        try{
-          firebase.auth().signInWithEmailAndPassword(email, password)
-          alert("Login Successfull!");
-          this.props.navigation.navigate('Drawer');
+
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email, password)
+          .then(() => this.props.navigation.navigate('Drawer'))
+          .catch(error => alert(error.toString()))
         }
-        catch(error) {
-           console.log(error.toString())
-        }
-        
-      }
+      
     
       async loginWithFacebook() {
         const {type, token} = await Expo.Facebook.logInWithReadPermissionsAsync('2836955296530583', { permissions: ['public_profile']});
         
-        if(type == 'sucess') {
+        if(type == 'success') {
           const credential = firebase.auth.FacebookAuthProvider.credential(token);
 
-          firebase.auth().signInWithCredential(credential).catch((error) => {
+          firebase
+          .auth()
+          .signInAndRetrieveDataWithCredential(credential)
+          .then(() => {
+            alert("Login Successfull with Facebook!");
+            this.props.navigation.navigate('Drawer');
+          })
+          .catch((error) => {
             console.log(error);
           }
           )
-          alert("Login Successfull!");
-          this.props.navigation.navigate('Drawer');
 
       }
     }
@@ -70,6 +72,7 @@ class Login extends React.Component{
           if(user != null) {
             console.log(user);
           }
+          this.props.navigation.navigate(user ? 'Drawer' : 'LoginNav')
         })
       }
 
