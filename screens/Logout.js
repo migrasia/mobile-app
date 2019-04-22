@@ -9,8 +9,13 @@ import * as firebase from 'firebase'
 class Logout extends React.Component{
 
   logout = () => {
-    firebase.auth().signOut();
-    this.props.navigation.navigate('LoginNav', {}, NavigationActions.navigate({ routeName: 'Login' }));
+    firebase.auth()
+    .signOut()
+    .then(() => {
+      this.props.navigation.navigate('LoginNav', {}, NavigationActions.navigate({ routeName: 'Login' }));
+    }
+    );
+   
   }
 
     render(){
