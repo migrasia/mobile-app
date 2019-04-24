@@ -13,8 +13,8 @@ class Logout extends React.Component{
     .signOut()
     .then(() => {
       this.props.navigation.navigate('LoginNav', {}, NavigationActions.navigate({ routeName: 'Login' }));
-    }
-    );
+    })
+    .catch((error)=> {alert(error)});
    
   }
 

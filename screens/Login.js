@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, View, TextInput, StyleSheet} from 'react-native';
+import { Text, View, TextInput, StyleSheet, AppRegistry,
+  AsyncStorage } from 'react-native';
 import {Container, Content, Header, Form, Input, Item, Label, Button } from 'native-base'
 import * as firebase from 'firebase'
 
@@ -37,11 +38,15 @@ class Login extends React.Component{
 
       }
       loginUser = (email, password) => {
-
+        
         firebase
           .auth()
           .signInWithEmailAndPassword(email, password)
-          .then(() => this.props.navigation.navigate('Drawer'))
+          .then((userData) =>{
+              AsyncStorage.setItem('userData', JSON.stringify(userData));
+              this.props.navigation.navigate('Drawer');
+      }
+    )
           .catch(error => alert(error.toString()))
         }
       
@@ -55,10 +60,11 @@ class Login extends React.Component{
           firebase
           .auth()
           .signInAndRetrieveDataWithCredential(credential)
-          .then(() => {
-            alert("Login Successfull with Facebook!");
+          .then((userData) =>{
+            AsyncStorage.setItem('userData', JSON.stringify(userData));
             this.props.navigation.navigate('Drawer');
-          })
+           }
+           )
           .catch((error) => {
             console.log(error);
           }
