@@ -17,9 +17,7 @@ import Logout from './screens/Logout';
 const { manifest } = Constants;
 
 
-const graphQLURI = (typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
-  ? `http://${manifest.debuggerHost.split(":").shift()}:4000/graphql`
-  : `https://test-migrasia.herokuapp.com/`;
+const graphQLURI = `https://test-migrasia.herokuapp.com/`;
 
 
 const client = new ApolloClient({
