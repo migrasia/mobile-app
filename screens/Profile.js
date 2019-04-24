@@ -1,8 +1,26 @@
 import React from 'react'
-import { Container, Content, Card, CardItem, Body, Thumbnail, Text, Header, Left, Right, Icon, Title, Button } from 'native-base';
+import { AsyncStorage } from 'react-native'
+import { Container, Content, Card, CardItem, Body, Thumbnail, Text, Header, Left, Right, Icon, Title, Button
+   } from 'native-base';
+import * as firebase from 'firebase';
 
 
 class Profile extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state = {user : null}
+  }
+
+  componentWillMount() {
+    // get the current user from firebase
+       const userData = firebase.auth().currentUser;
+      this.setState({
+        user: userData
+      });
+    }
+  
+
   render(){
     return(
       <Container>
@@ -19,8 +37,8 @@ class Profile extends React.Component{
           <Card>
             <CardItem >
               <Body style={{alignItems:'center'}}>
-                <Thumbnail style={{height:300, width:300, borderRadius:150, marginBottom: 10}} source={{uri: 'https://static.givealittle.co.nz/assets/hero/v636483721036470000-6059269d-d8dd-44b9-9a35-a8430180fef8-800'}}/>
-                <Text style={{fontSize:30}}>{this.props.name}</Text>
+                <Thumbnail style={{height:300, width:300, borderRadius:150, marginBottom: 10}} source={{uri: this.state.user.photoURL}}/>
+                <Text style={{fontSize:30}}>{this.state.user.displayName}</Text>
               </Body>
             </CardItem>
             <CardItem>
