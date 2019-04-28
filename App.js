@@ -17,9 +17,7 @@ import Logout from './screens/Logout';
 const { manifest } = Constants;
 
 
-const graphQLURI = (typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
-  ? `http://${manifest.debuggerHost.split(":").shift()}:4000/graphql`
-  : `https://test-migrasia.herokuapp.com/`;
+const graphQLURI = `https://test-migrasia.herokuapp.com/`;
 
 
 const client = new ApolloClient({
@@ -52,16 +50,16 @@ const CustomDrawerComponent = (props) => (
 )
 
 const CourseNav = createStackNavigator({
-  Courses: { 
-    screen: (props)=> <Courses {...props}/> 
+  Courses: {
+    screen: (props)=> <Courses {...props}/>
   },
-  CoursePage: { 
-    screen: (props) => <CoursePage {...props} /> 
+  CoursePage: {
+    screen: (props) => <CoursePage {...props} />
   }
 },
   {
-    navigationOptions: { 
-      header: null 
+    navigationOptions: {
+      header: null
   }
 });
 
